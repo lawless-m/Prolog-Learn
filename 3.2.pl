@@ -1,6 +1,6 @@
-din(i, n).
-din(n, o).
-din(o, k).
+din(iani, nasha).
+din(nasha, olga).
+din(olga, kata).
 
 in(X, Y) :- din(X, Y).
 
