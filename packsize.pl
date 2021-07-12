@@ -1,42 +1,10 @@
 % https://logic.puzzlebaron.com/play.php?u2=aa90063b7c9d845518223ab32eaf51f9
 
-alldif([]).
-alldif([H|T]) :- alldif(H, T).
-alldif(_, []).
-alldif(E, [H|T]) :- dif(E, H), alldif(E, T), alldif(H, T).
-
-allmembers([], _).
-allmembers([H|T], Db) :- member(H, Db), allmembers(T, Db).
-
-differentMembers(Ms, Db) :- alldif(Ms), allmembers(Ms, Db).
-
-applyRules([], _).
-applyRules([R|Rs], Db) :- call(rule(R, Db)), applyRules(Rs, Db).
-
-
-list_list1longer([], [_]).
-list_list1longer([_|S], [_|[_|S]]).
-
-cols(C, Db) :- length(Db, C).
-
-cols(C, Db) :- list_list1longer(Db, DbL), cols(C, DbL).
-
-
-rows(_, []).
-rows(R, [C|Cs]) :- length(C, R), rows(R, Cs).
-
-members(R, C, Db) :-  cols(C, Db), rows(R, Db).
-
 values(Db) :-
   allmembers([ [25|_], [30|_], [35|_], [40|_] ], Db),
   allmembers([ [_,bistric,_,_], [_,grennel,_,_], [_,naturba,_,_], [_,pinkster,_,_] ], Db),
   allmembers([ [_,_,gray,_], [_,_,green,_], [_,_,purple,_], [_,_,silver,_] ], Db),
   allmembers([ [_,_,_,myrna], [_,_,_,eugene], [_,_,_,donna], [_,_,_,howie] ], Db).
-
-packsize(Db, Rules) :-
-   members(4,4, Db),
-   applyRules(Rules, Db),
-   values(Db).
 
 % 1. Eugene's pack is 5 liters larger than the green pack.
 rule(1, Db) :-
