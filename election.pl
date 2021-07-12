@@ -8,7 +8,7 @@ day(X) :- member(X, [14, 15, 16, 17]).
 answer(As) :- 
 	As = [
 		[day(14), candidate(fred), party(libertarian), attend(2600)],
-		[day(15), candidate(ashley), party(objectivist), attend(1600)], 
+		[day(15), candidate(ashley), party(objectivist), attend(1600)],
 		[day(16), candidate(daniel), party(reformist), attend(1875)],
 		[day(17), candidate(edith), party(socialist), attend(1200)]
 	].
@@ -66,7 +66,7 @@ election(Cs) :-
 	day(Lday),
 	Day16k is +(Lday, +1),
 	day(Day16k),
-%	differentMembers([ [day(Day16k),_,_,attend(1600)], [day(Lday),_,party(libertarian),_] ], Cs),
+	differentMembers([ [day(Day16k),_,_,attend(1600)], [day(Lday),_,party(libertarian),_] ], Cs),
 
 	1=1.
 

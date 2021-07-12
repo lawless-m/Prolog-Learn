@@ -35,3 +35,20 @@ flat([H|T], Flat) :- flat([H|T], [], Flat).
 flat([], Flat, Flat).
 flat([H|T], A, Flat) :- is_list(H), flat(H, A, Sa), flat(T, Sa, Flat).
 flat(H, A, Flat) :- flat([], [H|A], Flat).
+
+append([],L,L).
+append([H|T],L2,[H|L3])  :-  append(T,L2,L3).
+prefix(P,L):-  append(P,_,L).
+suffix(S,L):-  append(_,S,L).
+sublist(SubL,L):-  suffix(S,L),  prefix(SubL,S).
+
+zebra(Nat) :-
+           Street=[_,_,_],
+           member(h([eng, red, _]), Street),
+           member(h([span, _, jag]), Street),
+           sublist([h([jap, _, _]), h([_, _, snail])], Street),
+           sublist([h([_, blue, _]), h([_, _, snail])], Street),
+           member(h([Nat, _, zebra]), Street).
+
+
+
