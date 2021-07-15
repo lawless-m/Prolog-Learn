@@ -11,6 +11,9 @@ difMembers(Ms, Db) :- alldif(Ms), allmembers(Ms, Db).
 applyRules([], _).
 applyRules([R|Rs], Db) :- call(rule(R, Db)), applyRules(Rs, Db).
 
-solve(Db, Rules) :- applyRules(Rules, Db), values(Db).
+solve(Db) :-
+   findall(R, clause(rule(R, _), _), Rules),
+   applyRules(Rules, Db), 
+   values(Db).
 
 
